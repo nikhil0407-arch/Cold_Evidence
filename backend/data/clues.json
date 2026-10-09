@@ -1,0 +1,102 @@
+[
+  {
+    "id": "body",
+    "name": "Victim's Body",
+    "essential": true,
+    "unlock": "start",
+    "description": "Adrian Cole found in the library. No signs of struggle. Death caused by poison.",
+    "effects": {}
+  },
+  {
+    "id": "red_wine_bottle",
+    "name": "Bottle of Red Wine",
+    "essential": true,
+    "unlock": "start",
+    "description": "Vintage red wine bottle beside the body. Originally a gift from Victor Hayes. Laced with poison.",
+    "effects": {}
+  },
+  {
+    "id": "poison_sachets",
+    "name": "Poison Sachets",
+    "essential": true,
+    "unlock": "evidence_room",
+    "description": "Empty poison sachets found in the kitchen trash. First suggests Sarah, who worked in the kitchen.",
+    "effects": {
+      "sarahEmotion": "frightened"
+    }
+  },
+  {
+    "id": "fingerprint",
+    "name": "Fingerprint on Desk",
+    "essential": false,
+    "unlock": "evidence_room",
+    "description": "Partial print on Adrian's desk. Ultimately a distraction.",
+    "effects": {}
+  },
+  {
+    "id": "handwritten_note",
+    "name": "Handwritten Note",
+    "essential": false,
+    "unlock": "evidence_room",
+    "description": "Note from Adrian to Victor asking him to settle things in the library after dinner. Points at Victor at first.",
+    "effects": {
+      "victorEmotion": "defensive"
+    }
+  },
+  {
+    "id": "cctv",
+    "name": "CCTV Footage",
+    "essential": true,
+    "unlock": "cctv_room",
+    "description": "Camera captures only the lower body. Someone carries the red wine bottle toward the library. Size 10 shoes. No face visible.",
+    "effects": {}
+  },
+  {
+    "id": "footprints",
+    "name": "Size 10 Footprints",
+    "essential": false,
+    "unlock": "cctv_room",
+    "description": "Size 10 footprints near the library. Not enough alone to identify anyone.",
+    "effects": {}
+  },
+  {
+    "id": "white_wine",
+    "name": "Sarah's White-Wine Statement",
+    "essential": true,
+    "unlock": "ask_sarah_drinks",
+    "description": "Sarah remembers she poured Adrian a glass of WHITE wine, not red. Adrian carried white wine into the library.",
+    "effects": {
+      "emmaEmotion": "guarded"
+    }
+  },
+  {
+    "id": "kitchen_entry",
+    "name": "Emma Entered the Kitchen",
+    "essential": true,
+    "unlock": "sachets_then_ask_kitchen",
+    "description": "After the sachets are found, Sarah recalls that Emma slipped into the kitchen after Victor left. Emma admits it only when confronted.",
+    "effects": {
+      "emmaEmotion": "defensive"
+    }
+  },
+  {
+    "id": "wrapped_bottle",
+    "name": "Bottle Wrapped in Table Cloth",
+    "essential": true,
+    "unlock": "corroborated_by_sarah_and_ethan",
+    "description": "Sarah and Ethan independently remember Emma walking toward the library carrying something wrapped in a white table cloth. Ethan thought it was books.",
+    "effects": {
+      "emmaEmotion": "nervous"
+    }
+  },
+  {
+    "id": "shoe_match",
+    "name": "Emma's Size 10 Shoes",
+    "essential": true,
+    "unlock": "cctv_then_ask_shoes",
+    "description": "After the CCTV is reviewed, sizing confirms Emma also wears size 10 — the shoes on camera aren't proof of Victor.",
+    "effects": {
+      "emmaEmotion": "nervous"
+    }
+  }
+]

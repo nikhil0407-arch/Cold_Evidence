@@ -1,0 +1,13 @@
+import {Router} from 'express';
+import {startSession,sessionState,reset,ask,discover,accuse} from '../controllers/interrogationController.js';
+import {validateQuestion} from '../middleware/validateQuestion.js';
+import {interrogateLimiter} from '../middleware/rateLimiter.js';
+import {attachSupabaseUser} from '../middleware/attachSupabaseUser.js';
+const r=Router();
+r.post('/session/start',startSession);
+r.get('/session/:sessionId',sessionState);
+r.post('/session/:sessionId/reset',reset);
+r.post('/interrogate',interrogateLimiter,validateQuestion,ask);
+r.post('/clues/discover',discover);
+r.post('/accuse',attachSupabaseUser,accuse);
+export default r;

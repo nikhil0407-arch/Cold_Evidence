@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+		<link rel="icon" type="image/png" sizes="64x64" href="images/favicon.png">
+		<title>Cold Evidence</title>
+		<style>
+		@font-face {
+			font-family: "Fixedsys Excelsior";
+			src: url("fonts/FixedsysExcelsior.ttf") format("truetype");
+		}
+		@font-face {
+			font-family: "Symbols Nerd Font";
+			src: url("fonts/symbols.ttf") format("truetype");
+		}
+		.textIcons {
+			font-family: "Symbols Nerd Font";
+		}
+		html, body {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			overflow: hidden;
+		}
+		.bg-container {
+			position: fixed;
+			inset: 0;
+			background-image: url("images/home/landscape.jpg");
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+		.home-btn {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 30vw;
+			height: 8vw;
+			max-width: 280px;
+			max-height: 50px;
+			background-color: rgb(165 42 42 / 0.4);
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+			padding: 0;
+			color: white;
+			font-size: 1.2rem;
+			font-family: 'Fixedsys Excelsior', sans-serif;
+		}
+		@media (max-width: 480px) {
+			.bg-container {
+				background-image: url("images/home/portrait.jpg");
+			}
+			.home-btn {
+				width: 40vw;
+				height: 14vw;
+				bottom: 8%;
+			}
+		}
+		.login-overlay {
+			display: none;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: rgba(0, 0, 0, 1);
+			border: 2px solid rgb(165 42 42 / 0.6);
+			border-radius: 8px;
+			padding: 30px;
+			z-index: 10;
+			color: white;
+			font-family: 'Fixedsys Excelsior', sans-serif;
+			max-width: 90vw;
+			box-sizing: border-box;
+		}
+		.login-overlay.visible {
+			display: block;
+		}
+		.login-overlay h2 {
+			margin-top: 0;
+			text-align: center;
+		}
+		.login-overlay input {
+			display: block;
+			width: 200px;
+			margin: 10px auto;
+			padding: 8px;
+			border: 1px solid #555;
+			border-radius: 3px;
+			background: rgba(255, 255, 255, 0.1);
+			color: white;
+			font-family: 'Fixedsys Excelsior', sans-serif;
+			font-size: 1rem;
+		}
+		.login-overlay button {
+			display: block;
+			width: 220px;
+			margin: 15px auto 0;
+			padding: 8px;
+			background-color: rgb(165 42 42 / 0.6);
+			border: none;
+			border-radius: 3px;
+			color: white;
+			cursor: pointer;
+			font-family: 'Fixedsys Excelsior', sans-serif;
+			font-size: 1rem;
+			box-sizing: border-box;
+		}
+		.login-overlay button:not(:disabled):hover {
+			opacity: 0.82;
+		}
+		.login-overlay button.danger-btn {
+			background-color: rgba(180, 30, 30, 0.45);
+		}
+		.login-overlay button.danger-btn:hover {
+			background-color: rgba(180, 30, 30, 0.75);
+			opacity: 1;
+		}
+		.login-overlay button.muted-btn {
+			background-color: rgba(255, 255, 255, 0.06);
+			font-size: 0.85rem;
+		}
+		.login-overlay button.muted-btn:hover {
+			background-color: rgba(255, 255, 255, 0.12);
+			opacity: 1;
+		}
+		.google-btn {
+			background-color: white !important;
+			color: black !important;
+		}
+		.field-error {
+			color: #ff6b6b;
+			font-size: 0.8rem;
+			text-align: center;
+			min-height: 1em;
+			margin: -6px 0 4px;
+		}
+		.form-error {
+			color: #ff6b6b;
+			font-size: 0.85rem;
+			text-align: center;
+			min-height: 1em;
+		}
+		.login-overlay button:disabled {
+			cursor: default;
+			opacity: 0.7;
+		}
+		.spinner {
+			display: inline-block;
+			width: 14px;
+			height: 14px;
+			border: 2px solid rgba(255, 255, 255, 0.4);
+			border-top-color: white;
+			border-radius: 50%;
+			animation: spin 0.7s linear infinite;
+			vertical-align: middle;
+			margin-right: 6px;
+		}
+		@keyframes spin {
+			to { transform: rotate(360deg); }
+		}
+		</style>
+	</head>
+	<body>
+		<div class="bg-container">
+			<% if (user) { %>
+				<a href="/play"><button class="home-btn" style="bottom: 35%;"><span class="textIcons">&#xf0349;</span>&nbsp;START GAME</button></a>
+				<button type="button" id="accountBtn" class="home-btn" style="bottom: 25%;"><span class="textIcons">&#xf0004;</span>&nbsp;VIEW ACCOUNT</button>
+			<% } else { %>
+				<button type="button" id="startGameBtn" class="home-btn" style="bottom: 35%;"><span class="textIcons">&#xf0349;</span>&nbsp;START GAME</button>
+				<button type="button" id="loginBtn" class="home-btn" style="bottom: 25%;"><span class="textIcons">&#xf0342;</span>&nbsp;LOG IN</button>
+				<button type="button" id="registerBtn" class="home-btn" style="bottom: 15%;"><span class="textIcons">&#xea6f;</span>&nbsp;REGISTER</button>
+			<% } %>
+
+			<% if (!user) { %>
+			<div class="login-overlay" id="loginOverlay">
+				<h2><span class="textIcons">&#xf0342;</span>&nbsp;LOG IN</h2>
+				<form id="loginForm" method="POST" action="javascript:void(0);" novalidate>
+					<p style="color: grey;">Note:&nbsp;&nbsp;A registered account is required to log in</p>
+					<br>
+					<input type="text" placeholder="Username" name="username" id="loginUsername" autocomplete="username">
+					<div class="field-error" id="loginUsernameError"></div>
+					<input type="password" placeholder="Password" name="password" id="loginPassword" autocomplete="current-password">
+					<div class="field-error" id="loginPasswordError"></div>
+					<button type="submit" id="loginSubmitBtn">Enter</button>
+					<p style="text-align: center;">OR</p>
+					<button type="button" class="google-btn" id="loginGoogleBtn"><span class="textIcons">&#xe7f0;</span>&nbsp;&nbsp;Continue with Google</button>
+					<br>
+					<div class="form-error" id="loginFormError"></div>
+				</form>
+			</div>
+
+			<div class="login-overlay" id="registerOverlay">
+				<h2><span class="textIcons">&#xea6f;</span>&nbsp;REGISTER</h2>
+				<br>
+				<form id="registerForm" method="POST" action="javascript:void(0);" novalidate>
+					<input type="text" placeholder="Username" name="username" id="registerUsername" autocomplete="username">
+					<div class="field-error" id="registerUsernameError"></div>
+					<input type="email" placeholder="Email" name="email" id="registerEmail" autocomplete="email">
+					<div class="field-error" id="registerEmailError"></div>
+					<input type="password" placeholder="Password" name="password" id="registerPassword" autocomplete="new-password">
+					<div class="field-error" id="registerPasswordError"></div>
+					<input type="password" placeholder="Confirm Password" name="confirmPassword" id="registerConfirmPassword" autocomplete="new-password">
+					<div class="field-error" id="registerConfirmError"></div>
+					<button type="submit" id="registerSubmitBtn">Enter</button>
+					<p style="text-align: center;">OR</p>
+					<button type="button" class="google-btn" id="registerGoogleBtn"><span class="textIcons">&#xe7f0;</span>&nbsp;&nbsp;Continue with Google</button>
+					<br>
+					<div class="form-error" id="registerFormError"></div>
+				</form>
+			</div>
+			<% } %>
+
+			<div class="login-overlay" id="guestOverlay">
+				<h2><span class="textIcons">&#xf0349;</span>&nbsp;PLAY AS GUEST</h2>
+				<br>
+				<p style="text-align: center;">Guest progress can't be saved.<br>Continue anyway?</p>
+				<br>
+				<button type="button" id="guestContinueBtn">CONTINUE</button>
+				<button type="button" id="guestCancelBtn" class="muted-btn">CANCEL</button>
+			</div>
+
+			<% if (user) { %>
+			<div class="login-overlay" id="accountOverlay">
+				<h2><span class="textIcons">&#xf0004;</span>&nbsp;<%= user.user_metadata.username %></h2>
+				<br>
+				<p style="text-align: center;">Cases solved: <%= user.changenamelater %></p>
+				<br>
+				<button type="button" id="logoutBtn"><span class="textIcons">&#xf0343;</span>&nbsp;LOG OUT</button>
+				<div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+					<button type="button" id="deleteBtn" class="danger-btn"><span class="textIcons">&#xf000d;</span>&nbsp;DELETE ACCOUNT</button>
+					<div id="deleteConfirm" style="display: none;">
+						<p style="color: #ff6b6b; font-size: 0.8rem; text-align: center; margin: 10px 0;">
+							This permanently deletes your account<br>and cannot be undone.
+						</p>
+						<button type="button" id="deleteConfirmBtn" class="danger-btn">CONFIRM DELETE</button>
+						<button type="button" id="deleteCancelBtn" class="muted-btn">CANCEL</button>
+					</div>
+				</div>
+			</div>
+			<% } %>
+			<div class="login-overlay" id="confirmedOverlay">
+				<h2><span class="textIcons">&#xf0008;</span>&nbsp;EMAIL CONFIRMED</h2>
+				<p style="text-align: center;">Please wait for a few seconds and then</p>
+				<p style="text-align: center;">reload the original tab to log in.</p>
+				<p style="text-align: center;">You can close this tab.</p>
+			</div>
+		</div>
+
+		<script>
+			// --- Overlay toggling (only present when logged out) ---
+			const loginBtn = document.getElementById('loginBtn');
+			const loginOverlay = document.getElementById('loginOverlay');
+			const registerBtn = document.getElementById('registerBtn');
+			const registerOverlay = document.getElementById('registerOverlay');
+			const accountBtn = document.getElementById('accountBtn');
+			const accountOverlay = document.getElementById('accountOverlay');
+
+			if (accountBtn) {
+				accountBtn.addEventListener('click', () => {
+					accountOverlay.classList.toggle('visible');
+				});
+				document.addEventListener('click', (e) => {
+					if (!accountOverlay.contains(e.target) && e.target !== accountBtn) {
+						accountOverlay.classList.remove('visible');
+					}
+				});
+			}
+
+			// --- Guest play (only present when logged out) ---
+			const startGameBtn = document.getElementById('startGameBtn');
+			const guestOverlay = document.getElementById('guestOverlay');
+			const guestContinueBtn = document.getElementById('guestContinueBtn');
+			const guestCancelBtn = document.getElementById('guestCancelBtn');
+
+			if (startGameBtn) {
+				startGameBtn.addEventListener('click', () => {
+					guestOverlay.classList.toggle('visible');
+				});
+				document.addEventListener('click', (e) => {
+					if (!guestOverlay.contains(e.target) && e.target !== startGameBtn) {
+						guestOverlay.classList.remove('visible');
+					}
+				});
+				guestCancelBtn.addEventListener('click', () => {
+					guestOverlay.classList.remove('visible');
+				});
+				guestContinueBtn.addEventListener('click', () => {
+					window.location.href = '/play';
+				});
+			}
+
+			if (loginBtn && registerBtn) {
+				loginBtn.addEventListener('click', () => {
+					registerOverlay.classList.remove('visible');
+					loginOverlay.classList.toggle('visible');
+				});
+				registerBtn.addEventListener('click', () => {
+					loginOverlay.classList.remove('visible');
+					registerOverlay.classList.toggle('visible');
+				});
+				document.addEventListener('click', (e) => {
+					if (!loginOverlay.contains(e.target) && e.target !== loginBtn) {
+						loginOverlay.classList.remove('visible');
+					}
+					if (!registerOverlay.contains(e.target) && e.target !== registerBtn) {
+						registerOverlay.classList.remove('visible');
+					}
+				});
+			}
+
+			// --- Supabase client ---
+			const SUPABASE_URL = "https://ulvdzkiqfacuiqcdjqir.supabase.co";
+			const SUPABASE_ANON_KEY = "sb_publishable_g46HZc0EnjczHu6yGCYHZg_IZ80PbIB";
+			const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+			// --- Email confirmation redirect handling ---
+			const isConfirmationRedirect = new URLSearchParams(window.location.search).has('confirmed');
+
+			if (isConfirmationRedirect) {
+				document.getElementById('confirmedOverlay').classList.add('visible');
+				document.querySelectorAll('.home-btn, #loginOverlay, #registerOverlay').forEach((el) => {
+					el.style.display = 'none';
+				});
+			}
+
+			// --- Validation helpers ---
+			const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			const USERNAME_REGEX = /^[a-zA-Z0-9_]{3,20}$/;
+
+			function validateEmail(value) {
+				if (!value) return "Email is required.";
+				if (!EMAIL_REGEX.test(value)) return "Enter a valid email.";
+				return "";
+			}
+
+			function validatePassword(value) {
+				if (!value) return "Password is required.";
+				if (value.length < 8) return "Password must be at least 8 characters.";
+				return "";
+			}
+
+			function validateUsername(value) {
+				if (!value) return "Username is required.";
+				if (!USERNAME_REGEX.test(value)) return "3-20 characters: letters, numbers, underscores only.";
+				return "";
+			}
+
+			function setError(elId, message) {
+				document.getElementById(elId).textContent = message || "";
+			}
+
+			// Fixed: use innerHTML to preserve icon spans when restoring button text
+			function setLoading(btnId, isLoading, label) {
+				const btn = document.getElementById(btnId);
+				if (isLoading) {
+					btn.dataset.originalHTML = btn.innerHTML;
+					btn.disabled = true;
+					btn.innerHTML = '<span class="spinner"></span>' + label;
+				} else {
+					btn.disabled = false;
+					btn.innerHTML = btn.dataset.originalHTML || btn.textContent;
+				}
+			}
+
+			const GENERIC_LOGIN_ERROR = "Invalid username or password.";
+			const NETWORK_ERROR = "Couldn't reach the server. Check your connection and try again.";
+
+			function getCookie(name) {
+				const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+				return match ? match[1] : null;
+			}
+
+			async function syncSessionWithServer() {
+				const { data: { session } } = await supabaseClient.auth.getSession();
+				if (!session) return;
+
+				if (getCookie('sb-access-token') === session.access_token) return;
+
+				document.cookie = `sb-access-token=${session.access_token}; path=/; max-age=${session.expires_in}; SameSite=Lax`;
+
+				if (isConfirmationRedirect) {
+					return;
+				}
+
+				window.location.href = window.location.origin + window.location.pathname;
+			}
+
+			// --- Login/Register forms (only present when logged out) ---
+			const loginForm = document.getElementById('loginForm');
+			const registerForm = document.getElementById('registerForm');
+
+			if (loginForm) {
+				loginForm.addEventListener('submit', async (e) => {
+					e.preventDefault();
+					setError('loginFormError', '');
+
+					const username = document.getElementById('loginUsername').value.trim();
+					const password = document.getElementById('loginPassword').value;
+
+					const usernameErr = validateUsername(username);
+					const passwordErr = validatePassword(password);
+					setError('loginUsernameError', usernameErr);
+					setError('loginPasswordError', passwordErr);
+					if (usernameErr || passwordErr) return;
+
+					setLoading('loginSubmitBtn', true, 'Signing in...');
+
+					try {
+						const loginRes = await fetch('/login', {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify({ username, password })
+						});
+						const loginData = await loginRes.json();
+
+						if (!loginRes.ok) {
+							setError('loginFormError', GENERIC_LOGIN_ERROR);
+							setLoading('loginSubmitBtn', false);
+							return;
+						}
+
+						await supabaseClient.auth.setSession({
+							access_token: loginData.access_token,
+							refresh_token: loginData.refresh_token
+						});
+						await syncSessionWithServer();
+					} catch (err) {
+						setError('loginFormError', NETWORK_ERROR);
+						setLoading('loginSubmitBtn', false);
+					}
+				});
+
+				document.getElementById('loginGoogleBtn').addEventListener('click', async () => {
+					const { error } = await supabaseClient.auth.signInWithOAuth({
+						provider: 'google',
+						options: { redirectTo: window.location.origin }
+					});
+					if (error) {
+						setError('loginFormError', "Google sign-in failed. Please try again.");
+					}
+				});
+			}
+
+			if (registerForm) {
+				registerForm.addEventListener('submit', async (e) => {
+					e.preventDefault();
+					setError('registerFormError', '');
+
+					const username = document.getElementById('registerUsername').value.trim();
+					const email = document.getElementById('registerEmail').value.trim();
+					const password = document.getElementById('registerPassword').value;
+					const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+					const usernameErr = validateUsername(username);
+					const emailErr = validateEmail(email);
+					const passwordErr = validatePassword(password);
+					const confirmErr = password !== confirmPassword ? "Passwords do not match." : "";
+
+					setError('registerUsernameError', usernameErr);
+					setError('registerEmailError', emailErr);
+					setError('registerPasswordError', passwordErr);
+					setError('registerConfirmError', confirmErr);
+					if (usernameErr || emailErr || passwordErr || confirmErr) return;
+
+					setLoading('registerSubmitBtn', true, 'Creating account...');
+
+					try {
+						const { data, error } = await supabaseClient.auth.signUp({
+							email,
+							password,
+							options: {
+								data: { username },
+								emailRedirectTo: window.location.origin + window.location.pathname + '?confirmed=true'
+							}
+						});
+
+						if (error) {
+							if (error.message && error.message.includes('username_taken')) {
+								setError('registerUsernameError', 'Username already taken.');
+							} else {
+								setError('registerFormError', error.message);
+							}
+							setLoading('registerSubmitBtn', false);
+							return;
+						}
+
+						if (!data.session) {
+							setError('registerFormError', 'Check your email to confirm your account.');
+							setLoading('registerSubmitBtn', false);
+							return;
+						}
+					} catch (err) {
+						setError('registerFormError', NETWORK_ERROR);
+						setLoading('registerSubmitBtn', false);
+					}
+				});
+
+				document.getElementById('registerGoogleBtn').addEventListener('click', async () => {
+					const { error } = await supabaseClient.auth.signInWithOAuth({
+						provider: 'google',
+						options: { redirectTo: window.location.origin }
+					});
+					if (error) {
+						setError('registerFormError', "Google sign-in failed. Please try again.");
+					}
+				});
+			}
+
+			// --- Auth state listener ---
+			supabaseClient.auth.onAuthStateChange((event, session) => {
+				if (event === 'SIGNED_IN' && session) {
+					syncSessionWithServer();
+				}
+			});
+
+			// --- Account settings handlers (only present when logged in) ---
+			const logoutBtn = document.getElementById('logoutBtn');
+			const deleteBtn = document.getElementById('deleteBtn');
+			const deleteConfirm = document.getElementById('deleteConfirm');
+			const deleteConfirmBtn = document.getElementById('deleteConfirmBtn');
+			const deleteCancelBtn = document.getElementById('deleteCancelBtn');
+
+			if (logoutBtn) {
+				logoutBtn.addEventListener('click', async () => {
+					try {
+						await supabaseClient.auth.signOut();
+						document.cookie = 'sb-access-token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+						window.location.reload();
+					} catch (err) {
+						console.error('Logout error:', err);
+						alert('Failed to log out. Please try again.');
+					}
+				});
+			}
+
+			if (deleteBtn) {
+				deleteBtn.addEventListener('click', () => {
+					deleteBtn.style.display = 'none';
+					deleteConfirm.style.display = 'block';
+				});
+			}
+
+			if (deleteCancelBtn) {
+				deleteCancelBtn.addEventListener('click', () => {
+					deleteConfirm.style.display = 'none';
+					deleteBtn.style.display = 'block';
+				});
+			}
+
+			if (deleteConfirmBtn) {
+				deleteConfirmBtn.addEventListener('click', async () => {
+					deleteConfirmBtn.disabled = true;
+					deleteConfirmBtn.innerHTML = '<span class="spinner"></span>DELETING...';
+
+					try {
+						const res = await fetch('/delete-account', {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' }
+						});
+
+						if (!res.ok) {
+							throw new Error('Failed to delete account');
+						}
+
+						const data = await res.json();
+						if (data.success) {
+							window.location.href = window.location.origin + '/';
+						}
+					} catch (err) {
+						console.error('Delete account error:', err);
+						alert('Failed to delete account. Please try again.');
+						deleteConfirmBtn.disabled = false;
+						deleteConfirmBtn.innerHTML = 'CONFIRM DELETE';
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

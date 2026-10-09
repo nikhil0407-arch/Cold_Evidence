@@ -1,0 +1,1 @@
+import {rateLimit} from 'express-rate-limit';export const apiLimiter=rateLimit({windowMs:60_000,limit:60,standardHeaders:true,legacyHeaders:false,message:{error:'Too many requests. Please wait a moment.'}});export const interrogateLimiter=rateLimit({windowMs:10_000,limit:12,standardHeaders:true,legacyHeaders:false,message:{error:'Slow down, Detective.'}});

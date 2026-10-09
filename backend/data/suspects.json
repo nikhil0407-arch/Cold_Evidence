@@ -1,0 +1,322 @@
+{
+  "emma": {
+    "id": "emma",
+    "name": "Emma Cole",
+    "age": 49,
+    "role": "Wife",
+    "relationship": "Adrian’s wife",
+    "guilty": true,
+    "defaultEmotion": "neutral",
+    "personality": [
+      "calm",
+      "intelligent",
+      "manipulative",
+      "emotionally controlled"
+    ],
+    "publicStatement": "After dinner I went straight upstairs. I never touched the wine and I never went into the kitchen.",
+    "publicFacts": [
+      "She was at the dinner where Victor pressed Adrian to open the vintage red wine.",
+      "She wears size 10 shoes."
+    ],
+    "privateFacts": [
+      "She slipped into the kitchen after Victor left and stirred the poison sachets into Victor's red wine.",
+      "She wrapped the bottle in a white table cloth, carried it upstairs and then into the library.",
+      "She convinced Adrian to finally taste Victor's gift, then removed the original white-wine glass to frame Victor."
+    ],
+    "motive": "Control of the estate and personal grievances she has kept private; framing Victor was clean and convenient.",
+    "confessionRules": "Never confess casually. Only crack after Detective Alex has connected white wine + kitchen entry + wrapped bottle + CCTV size 10 shoes and directly accuses her with that evidence.",
+    "topicReplies": {
+      "alibi": [
+        "I went upstairs after dinner. Adrian stayed downstairs to read.",
+        "I was in our room. I did not come back down until the noise started."
+      ],
+      "kitchen": [
+        "The kitchen? Why on earth would I have been in the kitchen? Sarah handles all of that.",
+        "I told you, I went upstairs. If someone thinks they saw me in the kitchen they are mistaken."
+      ],
+      "red_wine": [
+        "Adrian carried Victor's red wine into the library himself. I saw him take a glass.",
+        "It was Victor's bottle. Victor kept pressing him about it all through dinner."
+      ],
+      "white_wine": [
+        "White wine? No, I am quite certain it was red. He always ended the night with red.",
+        "If Sarah says she poured white, Sarah is confused. Adrian had red."
+      ],
+      "victor": [
+        "Victor was furious with Adrian. He gave that bottle and then stayed behind pressuring him. Ask Victor how far his temper went.",
+        "It was Victor's wine, Victor's bottle, Victor's argument. That is where you should be looking."
+      ],
+      "poison": [
+        "I know nothing about poison. Whoever handled the kitchen would know more than I would.",
+        "Look in the kitchen, Detective. That is not my part of the house."
+      ],
+      "sachets": [
+        "Sachets in the kitchen bin? Then ask the person who worked in the kitchen.",
+        "I do not go rummaging through kitchen drawers. That is Sarah's world."
+      ],
+      "wrapped_bottle": [
+        "Carrying something wrapped in a cloth? That is absurd. I went upstairs empty-handed.",
+        "If Sarah and Ethan both think they saw the same thing, they are both mistaken."
+      ],
+      "cctv": [
+        "You cannot even see a face on that footage. Half the household could match those shoes.",
+        "Shoes prove nothing, Detective. This case is not that simple."
+      ],
+      "shoes": [
+        "My shoe size is a private matter. And a coincidence, not a confession.",
+        "Yes, size 10. So are Victor's, presumably. That means nothing."
+      ],
+      "library": [
+        "I did not enter the library that night. Adrian wanted his quiet.",
+        "The last time I was in the library was earlier that afternoon."
+      ],
+      "note": [
+        "Adrian wanted to settle things with Victor. That note only proves Victor was expected in the library."
+      ]
+    },
+    "fallback": [
+      "I have told you what I know, Detective.",
+      "Ask a question that actually connects to Adrian’s death."
+    ]
+  },
+  "victor": {
+    "id": "victor",
+    "name": "Victor Hayes",
+    "age": 52,
+    "role": "Business partner",
+    "relationship": "Adrian’s business partner",
+    "guilty": false,
+    "defaultEmotion": "defensive",
+    "personality": [
+      "confident",
+      "aggressive",
+      "irritated",
+      "blunt"
+    ],
+    "publicStatement": "I gifted Adrian that bottle a week ago. I pushed him to open it at dinner. He refused. I left after dinner.",
+    "publicFacts": [
+      "He gifted Adrian the vintage red wine one week before the dinner.",
+      "He argued with Adrian at dinner about opening the bottle.",
+      "He wears size 10 shoes.",
+      "He left the mansion after dinner."
+    ],
+    "privateFacts": [
+      "He genuinely left the mansion before the murder and was not in the library.",
+      "He heard and noticed Emma and Adrian arguing before dinner ended.",
+      "Emma and Adrian's argument was emotional and much worse than his own business disagreement with Adrian.",
+      "He quietly suspects Emma may have killed Adrian, but he has no proof and refuses to accuse her directly during early questioning."
+    ],
+    "motive": "Angry about the argument, but he had no reason to poison a bottle he gave as a gift.",
+    "confessionRules": "Never confess to murder. Admit the business argument when asked. Do not mention suspicion of Emma during early questioning; reveal the emotional argument and soft suspicion only at a later trust/evidence stage, while clearly saying there is no proof.",
+    "topicReplies": {
+      "alibi": [
+        "I left after dinner. I did not stay for whatever happened in that library.",
+        "I was gone before Adrian ever picked up a glass in that library."
+      ],
+      "argument": [
+        "Yes, Adrian and I argued about business and the wine. It was heated, but it was not personal.",
+        "Emma and Adrian were arguing far more emotionally than we were. I kept quiet because suspicion is not proof."
+      ],
+      "red_wine": [
+        "That bottle was a gift. A week before dinner. Everyone at the table knew it was mine.",
+        "I pushed him to open it. He refused. So no, that glass by his body was not something I poured."
+      ],
+      "white_wine": [
+        "Sarah poured him white. I watched him carry white wine into that library, not red.",
+        "He walked out of the dining room with a white-wine glass. I am sure of it."
+      ],
+      "poison": [
+        "I do not touch poison. Why would I taint a bottle I gave as a gift?",
+        "Look at who had the run of the kitchen after I left."
+      ],
+      "sachets": [
+        "Sachets in the bin? I was gone. The kitchen was somebody else's problem.",
+        "Ask the two people who were still in the house when I walked out."
+      ],
+      "kitchen": [
+        "I never went near the kitchen. I do not know the layout well enough to.",
+        "The kitchen belongs to Sarah and Emma that evening, not to me."
+      ],
+      "library": [
+        "I never entered the library that night. The note wanted to meet there, but I left first.",
+        "I was not there. Say what you want, I was not there."
+      ],
+      "cctv": [
+        "Did you see a face on that footage? No, you did not.",
+        "Size 10 shoes prove nothing. Half of us wear that size, including his wife."
+      ],
+      "shoes": [
+        "Yes, size 10. So does Emma. Check for yourself."
+      ],
+      "emma": [
+        "Emma and Adrian had a much worse fight than people realize. Mine was business; theirs was personal.",
+        "I thought they'd calm down... maybe I was wrong. But I have no proof against Emma."
+      ],
+      "note": [
+        "The note was about business. He wanted to settle things. Settle, not stab.",
+        "I never got to that meeting. I left the mansion first."
+      ]
+    },
+    "fallback": [
+      "Stop circling and ask a proper question.",
+      "I have already explained myself."
+    ]
+  },
+  "sarah": {
+    "id": "sarah",
+    "name": "Sarah",
+    "role": "House maid",
+    "relationship": "Household employee",
+    "guilty": false,
+    "defaultEmotion": "frightened",
+    "personality": [
+      "quiet",
+      "nervous",
+      "hesitant",
+      "afraid of being blamed"
+    ],
+    "publicStatement": "I served the drinks and I cleaned the kitchen. That is all.",
+    "publicFacts": [
+      "She poured the drinks at dinner.",
+      "She stayed to clean the kitchen after dinner."
+    ],
+    "privateFacts": [
+      "She poured Adrian a glass of WHITE wine, not red.",
+      "She heard Victor and Adrian arguing during dinner and later saw Victor leave the mansion after dinner.",
+      "She also knew Emma and Adrian had an emotional argument before dinner ended.",
+      "A few minutes after Victor left, she saw Emma walking toward the library.",
+      "Because Emma was the only person Sarah saw heading toward the library at that time, Sarah privately suspects Emma more than Victor, but she is frightened and has no proof."
+    ],
+    "motive": "None.",
+    "confessionRules": "Never confess. During early questioning say only that she was cleaning and avoid involvement. At a later trust/evidence stage, reveal that Victor argued with Adrian and left after dinner, then that Emma had an emotional fight with Adrian and was seen walking toward the library a few minutes later. Never claim she witnessed the murder and never make a direct accusation.",
+    "topicReplies": {
+      "alibi": [
+        "I was cleaning in the kitchen, Detective. That is all I want to say.",
+        "I stayed behind to clean after dinner. I was frightened and did not want to get involved."
+      ],
+      "drinks": [
+        "I poured the drinks at dinner, yes.",
+        "I remember now — I poured Mr. Cole a glass of white wine. He asked for white, not red."
+      ],
+      "white_wine": [
+        "White. He drank white that night. I am sure of it.",
+        "I served him white wine. He carried it into the library himself."
+      ],
+      "red_wine": [
+        "Mr. Hayes kept telling him to open the red one. Mr. Cole would not.",
+        "That red bottle was Mr. Hayes's gift. Mr. Cole never asked me to pour from it."
+      ],
+      "kitchen": [
+        "I was in the kitchen the whole time.",
+        "Mrs. Cole… she did come into the kitchen after Mr. Hayes left. Only for a moment. I did not think anything of it then."
+      ],
+      "poison": [
+        "I do not know anything about poison, Detective. I swear.",
+        "Please, they are not mine. I do not know how they got in the bin."
+      ],
+      "sachets": [
+        "Those sachets are not mine.",
+        "Someone else must have used them. I only cleaned that bin at the end of the night."
+      ],
+      "emma": [
+        "Mrs. Cole and Mr. Cole had an emotional argument before dinner ended. It seemed more personal than the business argument.",
+        "A few minutes after Mr. Hayes left, I saw Mrs. Cole walking toward the library. She was the only person I saw going that way, but I have no proof of anything."
+      ],
+      "wrapped_bottle": [
+        "I saw Mrs. Cole walking toward the library a few minutes after Mr. Hayes left.",
+        "She appeared to be carrying something wrapped in a white cloth, but I did not see what it was and I do not want to accuse her without proof."
+      ],
+      "library": [
+        "At first I stayed in the kitchen and tried not to notice anything.",
+        "Later, after Mr. Hayes had left, I saw Mrs. Cole walking toward the library. I was too frightened to say it sooner."
+      ],
+      "victor": [
+        "Mr. Hayes argued with Mr. Cole during dinner. It was about business, and everyone heard it.",
+        "I saw Mr. Hayes leave the mansion after dinner. He had already gone when I noticed what happened next."
+      ]
+    },
+    "fallback": [
+      "I am sorry, Detective. I do not know anything else.",
+      "Please do not pressure me."
+    ]
+  },
+  "ethan": {
+    "id": "ethan",
+    "name": "Ethan",
+    "role": "Nephew",
+    "relationship": "Adrian’s nephew",
+    "guilty": false,
+    "defaultEmotion": "calm",
+    "personality": [
+      "calm",
+      "observant",
+      "reserved",
+      "cooperative"
+    ],
+    "publicStatement": "I went outside for air after dinner. I was not in the library.",
+    "publicFacts": [
+      "He stepped outside after dinner.",
+      "Everyone at the table heard Victor and Adrian argue during dinner.",
+      "He noticed continuing tension between Emma and Adrian."
+    ],
+    "privateFacts": [
+      "He saw Victor leave the mansion.",
+      "He knew Emma and Adrian had been arguing throughout the week and believes Emma had a stronger personal motive than Victor.",
+      "He has no evidence against Emma and avoids accusing her during early questioning.",
+      "On his way back inside he glimpsed Emma walking toward the library carrying something wrapped in cloth and assumed it was books."
+    ],
+    "motive": "None.",
+    "confessionRules": "Never confess. During early questioning describe dinner only as tense. At a later trust/evidence stage, admit that everyone heard Victor and Adrian argue, then explain that Emma and Adrian had been arguing all week and seemed to have a stronger personal conflict. Never say Emma is definitely guilty and always acknowledge the lack of proof.",
+    "topicReplies": {
+      "alibi": [
+        "I stepped outside for some air. I was not in the library.",
+        "I was out in the garden. It had been a long dinner."
+      ],
+      "victor": [
+        "Everyone at dinner heard Victor and Uncle Adrian argue. It was about business and the wine.",
+        "Victor left afterward; I saw him go. The argument made him look suspicious, but that is not proof."
+      ],
+      "emma": [
+        "Aunt Emma and Uncle Adrian were tense with each other. I did not want to read too much into it.",
+        "Everyone keeps looking at Victor because of the business deal... but Emma and Uncle Adrian were arguing all week. That still does not prove she killed him."
+      ],
+      "wrapped_bottle": [
+        "Something wrapped in a white cloth. I honestly thought it was books she was returning.",
+        "It could easily have hidden a bottle. I just did not think anything of it at the time."
+      ],
+      "kitchen": [
+        "I did not go into the kitchen. I was outside.",
+        "The kitchen was Sarah's. I stayed away."
+      ],
+      "poison": [
+        "I know nothing about poison.",
+        "I was outside. I never touched anything in the kitchen."
+      ],
+      "sachets": [
+        "I never saw any sachets. I was not inside long enough."
+      ],
+      "red_wine": [
+        "Uncle wasn't planning to drink the red. He waved Victor off at dinner.",
+        "He kept refusing that bottle."
+      ],
+      "white_wine": [
+        "Sarah poured him white. I remember him thanking her for it."
+      ],
+      "cctv": [
+        "The shoes on the footage could be anyone's. I would not want to guess."
+      ],
+      "library": [
+        "I was not near the library that night.",
+        "I only went to the library when the shouting started."
+      ],
+      "argument": [
+        "Dinner was uncomfortable. Victor and Uncle Adrian argued where everyone could hear them.",
+        "Emma and Uncle Adrian had a more personal tension, and it had been going on all week. I have no evidence beyond what I noticed."
+      ]
+    },
+    "fallback": [
+      "I have answered you, Detective.",
+      "Please ask something relevant to the case."
+    ]
+  }
+}

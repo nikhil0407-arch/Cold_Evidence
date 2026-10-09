@@ -1,0 +1,22 @@
+{
+  "emma": {
+    "type": "true",
+    "title": "CASE SOLVED",
+    "text": "Faced with the white-wine testimony, the kitchen sighting, the wrapped bottle and the size 10 shoes, Emma finally breaks. She poisoned Victor's bottle in the kitchen after he left, carried it to the library wrapped in a table cloth, and framed him for the murder."
+  },
+  "victor": {
+    "type": "wrong",
+    "title": "WRONG ACCUSATION",
+    "text": "Victor is arrested for the poisoning, but he left the mansion before Adrian ever touched the red wine. The real murderer walks away clean."
+  },
+  "sarah": {
+    "type": "wrong",
+    "title": "WRONG ACCUSATION",
+    "text": "Sarah worked the kitchen but she poured Adrian white wine, not red. Her frightened silence wasn't guilt, and the case collapses around you."
+  },
+  "ethan": {
+    "type": "wrong",
+    "title": "WRONG ACCUSATION",
+    "text": "Ethan was outside when the poisoning happened. Accusing him ignores the wine, the kitchen and the CCTV — and the real killer escapes."
+  }
+}

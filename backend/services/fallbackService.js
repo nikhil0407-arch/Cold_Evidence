@@ -1,0 +1,2 @@
+const fixed={greeting:'What do you want to ask, Detective?',irrelevant:'That has nothing to do with Adrian’s death.',meta:'Ask me about the case, not the game or its code.',prompt_injection:'Stop playing games and ask me a proper question.',empty:'Ask me a question, Detective.',long:'Keep your question brief and connected to the case.',repeated:'I already answered that, Detective.'};
+export function fixedReply(kind){return fixed[kind]||'I have already told you what I know, Detective.';}

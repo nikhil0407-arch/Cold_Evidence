@@ -1,0 +1,37 @@
+{
+  "caseId": "last-toast-047",
+  "title": "The Last Toast",
+  "victim": {
+    "name": "Adrian Cole",
+    "age": 54,
+    "occupation": "Antique Collector"
+  },
+  "detective": "Alex Carter",
+  "location": "Library",
+  "timeOfDeath": "Approximately 9:40 PM",
+  "realMurderer": "emma",
+  "realMurderMethod": "poisoned_red_wine",
+  "actualCauseOfDeath": "Poisoned red wine",
+  "framedSuspect": "victor",
+  "timeline": [
+    "Dinner party ended around 9:00 PM",
+    "Victor encouraged Adrian to open the vintage red wine Victor had gifted a week earlier",
+    "Adrian refused red wine; Sarah poured him a glass of WHITE wine",
+    "Adrian carried WHITE wine into the library",
+    "Victor left the mansion",
+    "Sarah cleaned the kitchen",
+    "Ethan went outside",
+    "Emma slipped into the kitchen and stirred poison sachets into Victor's red wine",
+    "Emma wrapped the bottle in a white table cloth and took it upstairs, then into the library",
+    "Emma convinced Adrian to finally taste Victor's gift",
+    "Adrian drank the poisoned red wine and died",
+    "Emma removed the original white-wine glass and left Victor's bottle beside the body to frame Victor"
+  ],
+  "requiredForTrueAccusation": [
+    "white_wine",
+    "kitchen_entry",
+    "wrapped_bottle",
+    "shoe_match"
+  ],
+  "finalExplanation": "Adrian never carried red wine into the library — Sarah poured him white wine. Emma slipped into the kitchen after Victor left, laced Victor's gift bottle with poison from the sachets, wrapped it in a white table cloth, and brought it to Adrian. The size 10 shoes on the CCTV weren't Victor's — they matched Emma. She staged the scene to frame Victor."
+}

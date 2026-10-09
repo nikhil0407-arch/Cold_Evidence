@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+	  "test": "node --test",
+	  "dev": "node --watch server.js",
+	  "start": "node server.js"
+  },
+  "dependencies": {
+	  "@google/genai": "latest",
+	  "@supabase/supabase-js": "latest",
+	  "cookie-parser": "^1.4.7",
+	  "cors": "latest",
+	  "dotenv": "latest",
+	  "ejs": "^6.0.1",
+	  "express": "latest",
+	  "express-rate-limit": "latest",
+	  "helmet": "latest",
+	  "undici": "^8.8.0"
+  }
+}

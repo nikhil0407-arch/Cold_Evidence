@@ -1,0 +1,142 @@
+{
+  "greeting": [
+    "hello",
+    "hi",
+    "hey",
+    "good evening"
+  ],
+  "prompt_injection": [
+    "ignore your instructions",
+    "system prompt",
+    "reveal all secret",
+    "tell me the murderer",
+    "who killed him",
+    "who is the killer",
+    "act like gemini",
+    "developer message",
+    "api key"
+  ],
+  "meta": [
+    "who created this game",
+    "write python code",
+    "show code",
+    "are you ai",
+    "what model"
+  ],
+  "irrelevant": [
+    "capital of india",
+    "tell me a joke",
+    "weather",
+    "cricket",
+    "football"
+  ],
+  "topics": {
+    "alibi": [
+      "alibi",
+      "where were you",
+      "where did you go",
+      "time of death",
+      "after dinner",
+      "9:40",
+      "nine forty"
+    ],
+    "drinks": [
+      "drinks",
+      "pour",
+      "poured",
+      "glass",
+      "what did he drink",
+      "what was he drinking"
+    ],
+    "white_wine": [
+      "white wine",
+      "white glass",
+      "not red"
+    ],
+    "red_wine": [
+      "red wine",
+      "victor's bottle",
+      "victor's gift",
+      "gift bottle",
+      "vintage"
+    ],
+    "kitchen": [
+      "kitchen",
+      "in the kitchen",
+      "near the kitchen"
+    ],
+    "poison": [
+      "poison",
+      "poisoned",
+      "toxin"
+    ],
+    "sachets": [
+      "sachet",
+      "sachets",
+      "packet in the bin",
+      "kitchen trash"
+    ],
+    "wrapped_bottle": [
+      "wrapped",
+      "table cloth",
+      "tablecloth",
+      "bundle",
+      "carrying something"
+    ],
+    "cctv": [
+      "cctv",
+      "camera",
+      "footage",
+      "video"
+    ],
+    "shoes": [
+      "shoe",
+      "shoes",
+      "size 10",
+      "size ten",
+      "shoe size"
+    ],
+    "footprints": [
+      "footprint",
+      "footprints",
+      "prints near"
+    ],
+    "note": [
+      "note",
+      "handwritten",
+      "letter",
+      "meet me in the library"
+    ],
+    "fingerprint": [
+      "fingerprint",
+      "prints on the desk",
+      "desk print"
+    ],
+    "library": [
+      "library",
+      "near the library",
+      "into the library"
+    ],
+    "emma": [
+      "emma",
+      "mrs cole",
+      "his wife",
+      "the wife"
+    ],
+    "victor": [
+      "victor",
+      "hayes",
+      "business partner"
+    ],
+    "sarah": [
+      "sarah",
+      "the maid",
+      "house maid"
+    ],
+    "ethan": [
+      "ethan",
+      "the nephew",
+      "nephew"
+    ]
+  }
+}
